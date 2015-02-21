@@ -1,1 +1,6 @@
+# bundler
+/.bundle
+/vendor/bundle
+
+# dDeployer
 /tmp
