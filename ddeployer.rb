@@ -46,6 +46,10 @@ else
         removelist << strs[1]
       end
     end
+    File.open(TMP_FILE, 'a') do |file|
+      str = "#{Time.now.to_s}\t#{head_hash}"
+      file.puts(str)
+    end
   else
     puts "Same hash."
     exit
