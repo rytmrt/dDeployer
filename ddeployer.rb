@@ -1,9 +1,12 @@
+require 'digest/md5'
+
 script_path = File.dirname(__FILE__)
 script_dir = File.expand_path(script_path)
 
 repository_name = File.basename(Dir.pwd)
+repository_hash = Digest::MD5.new.update(Dir.pwd).to_s
 branch_name = 'master'
-prev_file = "#{script_dir}/tmp/#{repository_name}-#{branch_name}.log"
+prev_file = "#{script_dir}/tmp/#{repository_name}-#{branch_name}-#{repository_hash}"
 
 forwardlist = []
 removelist = []
