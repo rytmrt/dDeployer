@@ -15,6 +15,7 @@ mkmf.log
 /vendor/bundle/
 
 # dDeployer
+/ddeployer.yaml
 /conf/*
 !/conf/*.yaml.sample
 
