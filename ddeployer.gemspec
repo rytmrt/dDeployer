@@ -8,9 +8,9 @@ Gem::Specification.new do |spec|
   spec.version       = Ddeployer::VERSION
   spec.authors       = ["Ryota Morita"]
   spec.email         = ["ryota.morita.3.8@gmail.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
-  spec.homepage      = ""
+  spec.summary       = %q{Gitから差分を抽出して、サーバーに適応するツール}
+  spec.description   = %q{Gitから差分を抽出して、サーバーに適応するツールです。}
+  spec.homepage      = "https://github.com/rytmrt/dDeployer"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
