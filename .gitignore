@@ -4,3 +4,5 @@
 
 # dDeployer
 /tmp
+/conf/*
+!/conf/*.yaml.sample
