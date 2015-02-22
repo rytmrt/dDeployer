@@ -6,7 +6,7 @@ require 'ddeployer/version'
 Gem::Specification.new do |spec|
   spec.name          = "ddeployer"
   spec.version       = Ddeployer::VERSION
-  spec.authors       = ["Ryota Morita"]
+  spec.authors       = ["rytmrt"]
   spec.email         = ["ryota.morita.3.8@gmail.com"]
   spec.summary       = %q{Gitから差分を抽出して、サーバーに適応するツール}
   spec.description   = %q{Gitから差分を抽出して、サーバーに適応するツールです。}
