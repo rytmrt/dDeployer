@@ -25,12 +25,8 @@ module Ddeployer
         .gsub(/^(.*)\/$/, '\\1')
         .gsub(/^\.$/, "")
       if local_path != "" then
-        files.forward.select! do |x|
-          x.match(/^#{local_path}\//) != nil
-        end
-        files.remove.select! do |x|
-          x.match(/^#{local_path}\//) != nil
-        end
+        files.forward = squeeze_file files.forward, local_path
+        files.remove  = squeeze_file files.remove, local_path
       end
 
       # show list for debag
@@ -40,6 +36,17 @@ module Ddeployer
       files.remove.each do |item|
         puts "- #{item}"
       end
+    end
+
+    private
+    def squeeze_file files, local_path
+      files.select! do |x|
+        x.match(/^#{local_path}\//) != nil
+      end
+      files.collect! do |i|
+        i.gsub(/^#{local_path}\/(.*)$/, "\\1")
+      end
+      return files
     end
 
     private
