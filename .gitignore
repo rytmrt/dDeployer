@@ -1,8 +1,20 @@
-# bundler
-/.bundle
-/vendor/bundle
+/.bundle/
+/.yardoc
+/Gemfile.lock
+/_yardoc/
+/coverage/
+/doc/
+/pkg/
+/spec/reports/
+/tmp/
+*.bundle
+*.so
+*.o
+*.a
+mkmf.log
+/vendor/bundle/
 
 # dDeployer
-/tmp
 /conf/*
 !/conf/*.yaml.sample
+
