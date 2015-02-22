@@ -3,7 +3,7 @@
 example:
   :host: 'example.com'
   :user: 'user'
-  :ssh-key: '/path/to/sshkey_id_rsa'
+  :key: '/path/to/sshkey_id_rsa'
 
 example-pw:
   :host: 'example.com'
