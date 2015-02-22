@@ -10,3 +10,4 @@ PLATFORMS
 
 DEPENDENCIES
   net-sftp
+  net-ssh
