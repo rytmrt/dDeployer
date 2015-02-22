@@ -19,6 +19,20 @@ module Ddeployer
     end
 
     def do files
+      repo_conf = @ddeployer_conf[@repository.branch]
+      local_path = repo_conf[:path][:local]
+        .gsub(/^\.(.*)$/, "\\1")
+        .gsub(/^\/(.*)$/, "\\1")
+        .gsub(/^(.*)\/$/, '\\1')
+      if local_path != "" then
+        files.forward.select! do |x|
+          x.match(/^#{local_path}\//) != nil
+        end
+        files.remove.select! do |x|
+          x.match(/^#{local_path}\//) != nil
+        end
+      end
+
       # show list for debag
       files.forward.each do |item|
         puts "+ #{item}"
