@@ -1,0 +1,15 @@
+# vim:set filetype=yaml:
+# branch-name:
+#   :host-label: 'デプロイ先のドメイン'
+#   :local-path: 'デプロイ対象'
+#   :deoloy-path: 'デプロイ先のパス'
+
+develop:
+  :host-label: 'example-pw'
+  :local-path: '.'
+  :deoloy-path: '/var/www/html/example'
+
+maseter:
+  :host-label: 'example'
+  :local-path: '.'
+  :deoloy-path: '/var/www/html/example'
