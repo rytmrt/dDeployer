@@ -32,6 +32,26 @@ module Ddeployer
       puts options[:branch]
     end
 
+    desc 'dry_run', 'dry run'
+    def dry_run
+      e "DRY RUN"
+      repo = Repository.new Dir.pwd, options[:branch]
+      tmp = Temporary.new repo
+      e tmp.file
+      last = tmp.get_last
+      if last != nil then
+        if last[:hash] == repo.head then
+          e 'No diff!'
+          return
+        end
+        files = FileList::get_diff last[:hash], repo.head
+      else 
+        files = FileList::get_all
+      end
+      deploy = Deploy.new repo
+      deploy.dry files
+    end
+
     desc 'do_run', 'do deploy'
     def do_run
       puts 'DEPLOY'

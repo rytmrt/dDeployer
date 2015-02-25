@@ -18,6 +18,33 @@ module Ddeployer
       @ddeployer_conf = load_yaml @ddeployer_yaml
     end
 
+    def dry files
+      repo_conf = @ddeployer_conf[@repository.branch]
+      local_path = repo_conf[:path][:local]
+        .gsub(/^\.\/(.*)$/, "\\1")
+        .gsub(/^(.*)\/$/, '\\1')
+        .gsub(/^\.$/, "")
+      if local_path != "" then
+        files.forward = squeeze_file files.forward, local_path
+        files.remove  = squeeze_file files.remove, local_path
+      end
+      remote_path = repo_conf[:path][:remote]
+        .gsub(/^(.*)\/$/, '\\1')
+      remote_files = files.clone
+      local2remote_path remote_files.forward, local_path, remote_path
+      local2remote_path remote_files.remove, local_path, remote_path
+      files.forward.zip(remote_files.forward).each do |l_item, r_item|
+        if File.exist? l_item then
+          puts "+ #{l_item} > #{r_item}"
+        else
+          puts "Not exist '#{l_item}'"
+        end
+      end
+      files.remove.zip(remote_files.remove).each do |l_item, r_item|
+        puts "- #{l_item}"
+      end
+    end
+
     def do files
       repo_conf = @ddeployer_conf[@repository.branch]
       local_path = repo_conf[:path][:local]
