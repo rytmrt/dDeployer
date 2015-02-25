@@ -1,11 +1,15 @@
 # vim:set filetype=yaml:
 
 example:
-  :host: 'example.com'
-  :user: 'user'
-  :key: '/path/to/sshkey_id_rsa'
+  :host: 'localhost'
+  :port: 2222
+  :user: 'vagrant'
+  :key:
+    :path: '~/.vagrant.d/insecure_private_key'
+    #:passphrase: 'example'
 
 example-pw:
   :host: 'example.com'
+  :port: 2222
   :user: 'user'
   :passwd: 'password'

@@ -33,6 +33,11 @@ module Ddeployer
       @remove = []
     end
 
+    def initialize_copy obj
+      @forward = obj.forward.dup
+      @remove = obj.remove.dup
+    end
+
     attr_accessor :forward, :remove
   end
 end
