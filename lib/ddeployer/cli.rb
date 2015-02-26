@@ -26,6 +26,16 @@ module Ddeployer
       end
     end
 
+    desc 'create_server_yaml', 'Create $HOME/.ddeployer/server.yaml'
+    def create_server_yaml
+      puts 'Creat _server yaml'
+      conf_sample = File.expand_path('../../../conf_samples', __FILE__)
+      origin_file = "#{conf_sample}/server.yaml.sample"
+      file_path = "#{APP_SAVE_DIR}/.ddeployer/server.yaml"
+      FileUtils.mkdir_p(File.dirname(file_path))
+      FileUtils.cp(origin_file, file_path)
+    end
+
     desc 'log', 'Show deploy log'
     def log
       puts 'log'
