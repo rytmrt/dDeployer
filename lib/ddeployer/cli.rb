@@ -2,6 +2,7 @@
 
 require 'thor'
 #require 'ddeployer/'
+require 'ddeployer/constants'
 require 'ddeployer/file_list'
 require 'ddeployer/temporary'
 require 'ddeployer/deploy'
@@ -28,12 +29,11 @@ module Ddeployer
 
     desc 'create_server_yaml', 'Create $HOME/.ddeployer/server.yaml'
     def create_server_yaml
-      puts 'Creat _server yaml'
-      conf_sample = File.expand_path('../../../conf_samples', __FILE__)
-      origin_file = "#{conf_sample}/server.yaml.sample"
-      file_path = "#{APP_SAVE_DIR}/.ddeployer/server.yaml"
-      FileUtils.mkdir_p(File.dirname(file_path))
-      FileUtils.cp(origin_file, file_path)
+      puts 'Creat_server yaml'
+      file_path = "#{APP_SAVE_DIR}/conf/server.yaml"
+      str_yaml = YAML.dump SERVER_YAML_SAMPLE
+      create_yaml str_yaml, file_path
+      puts str_yaml
     end
 
     desc 'log', 'Show deploy log'
@@ -81,6 +81,14 @@ module Ddeployer
       deploy = Deploy.new repo
       deploy.do files
       tmp.write_log repo.head
+    end
+
+    private
+    def create_yaml str_yaml, file_path
+      FileUtils.mkdir_p(File.dirname(file_path))
+      File.open file_path, 'w' do |file|
+        file.write str_yaml
+      end
     end
 
     private
