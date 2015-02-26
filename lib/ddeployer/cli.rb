@@ -27,6 +27,15 @@ module Ddeployer
       end
     end
 
+    desc 'create_ddeployer_yaml', 'CREATE HOME/.ddeployer/server.yaml'
+    def create_ddeployer_yaml
+      puts 'Creat ddeployer yaml'
+      file_path = "#{Dir.pwd}/ddeployer.yaml"
+      str_yaml = YAML.dump DDEPLOYER_YAML_SAMPLE
+      create_yaml str_yaml, file_path
+      puts str_yaml
+    end
+
     desc 'create_server_yaml', 'Create $HOME/.ddeployer/server.yaml'
     def create_server_yaml
       puts 'Creat_server yaml'
