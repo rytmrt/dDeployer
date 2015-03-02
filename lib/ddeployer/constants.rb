@@ -28,7 +28,7 @@ module Ddeployer
         :remote => '/var/www/html/example'
       }
     },
-    'maseter' => {
+    'master' => {
       :host_tag => 'example',
       :path => {
         :local => './',
